@@ -1,0 +1,75 @@
+.commonButton {
+  color: white;
+  background: pink;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  transition: 0.2s all;
+}
+.primaryButton {
+  color: white;
+  background-color: #006ada;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.2s all;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: cursive;
+}
+
+.dangerButton {
+  color: white;
+  background-color: #752222;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.2s all;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: cursive;
+}
+
+.cancelButton {
+  color: blue;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.2s all;
+}
+
+.button-outline {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  background: white;
+  border: 1px solid black;
+  transition: 0.2s all;
+}
+
+.commonButton:active,
+.button-outline:active,
+.primaryButton:active,
+.cancelButton:active {
+  transform: scale(0.98);
+}
+
+.transparent {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: blue;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+@media (max-width: 768px) {
+  .commonButton,
+  .button-outline {
+    font-size: 16px;
+    height: 45px;
+  }
+}
