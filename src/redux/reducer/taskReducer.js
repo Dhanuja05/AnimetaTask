@@ -9,13 +9,14 @@ const taskReducer = (state = initialState, action) => {
     case "DELETE_TASK":
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        tasks: state.tasks.filter((task, index) => index !== action.payload),
       };
+
     case "TOGGLE_TASK":
       return {
         ...state,
-        tasks: state.tasks.map((task) =>
-          task.id === action.payload
+        tasks: state.tasks.map((task, index) =>
+          index === action.payload
             ? { ...task, completed: !task.completed }
             : task
         ),

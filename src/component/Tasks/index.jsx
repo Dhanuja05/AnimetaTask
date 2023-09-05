@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import NormalButton from "../Common/NormalButton";
-import ReactSelect from "react-select";
 import NormalTable from "../Common/NormalTable";
 import { addTask, deleteTask, toggleTask, setFilter } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,21 +16,6 @@ const Tasks = () => {
   const filter = useSelector((state) => state.filter);
   console.log(filter, "filter");
   const dispatch = useDispatch();
-
-  const filterOptions = [
-    {
-      label: "All",
-      value: "SHOW_ALL",
-    },
-    {
-      label: "Completed",
-      value: "SHOW_COMPLETED",
-    },
-    {
-      label: "Active",
-      value: "SHOW_ACTIVE",
-    },
-  ];
 
   const filteredTasks = tasks.tasks.filter((task) => {
     if (filter === "SHOW_COMPLETED") {
@@ -50,6 +34,7 @@ const Tasks = () => {
   };
 
   const handleToggleTask = (taskId) => {
+    console.log(taskId, "taskId");
     dispatch(toggleTask(taskId));
   };
 
@@ -70,13 +55,14 @@ const Tasks = () => {
           <div className="row">
             <div className="col-6">
               <label className={styles.filterTitle}>Filter</label>
-              <ReactSelect
-                className="col-6"
-                placeholder="Select Filter"
-                options={filterOptions}
+              <select
+                id="filterDropdown"
                 value={filter}
                 onChange={(e) => handleFilterChange(e.target.value)}
-              />
+              >
+                <option value="SHOW_ALL">All</option>
+                <option value="SHOW_COMPLETED">Completed</option>
+              </select>
             </div>
             <div className="col-6 text-end">
               <NormalButton
@@ -91,6 +77,7 @@ const Tasks = () => {
           {filteredTasks.length > 0 ? (
             <>
               {filteredTasks.map((x, index) => {
+                console.log(x, "list");
                 return (
                   <tr key={x?.id}>
                     <td>{index + 1}</td>
@@ -99,14 +86,14 @@ const Tasks = () => {
                       <input
                         type="checkbox"
                         checked={x.completed}
-                        onChange={() => handleToggleTask(x.id)}
+                        onChange={() => handleToggleTask(index)}
                       />
                     </td>
                     <td>
                       <NormalButton
                         className="dangerButton"
                         label="Delete"
-                        onClick={() => handleDeleteTask(x.id)}
+                        onClick={() => handleDeleteTask(index)}
                       />
                     </td>
                   </tr>
