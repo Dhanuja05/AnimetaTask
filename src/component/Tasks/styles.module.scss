@@ -11,3 +11,55 @@
   font-family: cursive;
   margin: 5px 0px;
 }
+
+.noData {
+  font-family: cursive;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.taskTitle {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: cursive;
+  margin: 5px 0px;
+}
+.taskInputBox {
+  background: white;
+  border: 1px solid rgb(154, 153, 153);
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
+  padding: 0px 10px;
+  height: 45px;
+  transition: 0.2s all;
+}
+
+.selectBox {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.completed {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: cursive;
+  margin: 0px 10px;
+  color: rgb(37, 133, 53);
+}
+
+.checkBox {
+  background: white;
+  border: 1px solid rgb(171, 171, 171);
+  margin-top: 2px;
+  border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}

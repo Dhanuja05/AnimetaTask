@@ -5,7 +5,12 @@ import classes from "./styles.module.scss";
 const NormalTable = (props) => {
   const { headers, children, setwidth = false } = props;
   return (
-    <Table className={`${classes.normalTable}`} responsive striped bordered>
+    <Table
+      className={`${classes.normalTable}`}
+      responsive
+      bordered
+      hover
+    >
       <thead>
         <tr>
           {headers.map((header, index) => {

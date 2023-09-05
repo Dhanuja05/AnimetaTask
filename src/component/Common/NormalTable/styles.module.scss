@@ -1,18 +1,19 @@
 .normalTable {
-  border: 2px solid white !important;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.04);
+  border: 2px solid rgb(216, 216, 216) !important;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   thead {
     white-space: nowrap;
     th {
       color: white;
       background: #66aff8;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 19px;
       padding: 15px 10px;
       border-bottom: 1px solid white;
       max-width: 300px;
       text-align: center;
+      font-family: cursive;
     }
     .minwidth {
       min-width: 150px;
@@ -21,17 +22,18 @@
   tbody {
     border-top: none !important;
     vertical-align: middle;
-    tr {
-      border: transparent;
-    }
-    tr:nth-child(even) {
-      background-color: #66aff8;
-    }
+    // tr {
+    //   border: transparent;
+    // }
+    // tr:nth-child(even) {
+    //   background-color: #66aff8;
+    // }
     td {
       padding: 15px 10px;
-      text-align: left;
+      text-align: center;
+      font-family: cursive;
       color: black;
-      font-size: 16px;
+      font-size: 18px;
       word-break: break-all;
       max-width: 300px;
     }

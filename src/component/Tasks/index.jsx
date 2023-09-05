@@ -5,6 +5,8 @@ import NormalTable from "../Common/NormalTable";
 import { addTask, deleteTask, toggleTask, setFilter } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
+import { showToastSuccess } from "../Common/Toast";
+import { ToastContainer } from "react-toastify";
 
 const Tasks = () => {
   const headers = ["Sl.No", "Tasks", "Status", "Action"];
@@ -14,7 +16,6 @@ const Tasks = () => {
   const handleClose = () => setShow(false);
   const tasks = useSelector((state) => state.tasks);
   const filter = useSelector((state) => state.filter);
-  console.log(filter, "filter");
   const dispatch = useDispatch();
 
   const filteredTasks = tasks.tasks.filter((task) => {
@@ -31,15 +32,16 @@ const Tasks = () => {
     dispatch(addTask({ text: newTaskText, completed: false }));
     setNewTaskText();
     setShow(false);
+    showToastSuccess("Added Task successfully")
   };
 
   const handleToggleTask = (taskId) => {
-    console.log(taskId, "taskId");
     dispatch(toggleTask(taskId));
   };
 
   const handleDeleteTask = (taskId) => {
     dispatch(deleteTask(taskId));
+    showToastSuccess("Deleted Task successfully");
   };
 
   const handleFilterChange = (newFilter) => {
@@ -50,19 +52,20 @@ const Tasks = () => {
     <>
       <div className="mx-5 px-5">
         <p className={styles.title}>Building a Task Management App </p>
-
         <div className="my-5">
           <div className="row">
             <div className="col-6">
               <label className={styles.filterTitle}>Filter</label>
-              <select
-                id="filterDropdown"
-                value={filter}
-                onChange={(e) => handleFilterChange(e.target.value)}
-              >
-                <option value="SHOW_ALL">All</option>
-                <option value="SHOW_COMPLETED">Completed</option>
-              </select>
+              <div>
+                <select
+                  value={filter}
+                  onChange={(e) => handleFilterChange(e.target.value)}
+                  className={styles.selectBox}
+                >
+                  <option value="SHOW_ALL">All</option>
+                  <option value="SHOW_COMPLETED">Completed</option>
+                </select>
+              </div>
             </div>
             <div className="col-6 text-end">
               <NormalButton
@@ -77,7 +80,6 @@ const Tasks = () => {
           {filteredTasks.length > 0 ? (
             <>
               {filteredTasks.map((x, index) => {
-                console.log(x, "list");
                 return (
                   <tr key={x?.id}>
                     <td>{index + 1}</td>
@@ -87,7 +89,9 @@ const Tasks = () => {
                         type="checkbox"
                         checked={x.completed}
                         onChange={() => handleToggleTask(index)}
+                        className={styles.checkBox}
                       />
+                      <span className={styles.completed}>Completed</span>
                     </td>
                     <td>
                       <NormalButton
@@ -102,31 +106,35 @@ const Tasks = () => {
             </>
           ) : (
             <td className="text-center" colSpan={4}>
-              <p>No Data</p>
+              <p className={styles.noData}>No Data</p>
             </td>
           )}
         </NormalTable>
       </div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
             <label>Add New Task</label>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
-            <label>Task</label>
-            <input
-              type="text"
-              placeholder="Task text"
-              value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
-              className={styles}
-            />
+          <div className="row">
+            <div className="col-2">
+              <label className={styles.taskTitle}>Task</label>
+            </div>
+            <div className="col-10">
+              <input
+                type="text"
+                placeholder="Task text"
+                value={newTaskText}
+                onChange={(e) => setNewTaskText(e.target.value)}
+                className={styles.taskInputBox}
+              />
+            </div>
           </div>
-          <div>
+          <div className="text-end mt-4">
             <NormalButton
-              className="primaryButton"
+              className="primaryButton mx-3"
               label="Add"
               onClick={handleAddTask}
             />
@@ -138,6 +146,7 @@ const Tasks = () => {
           </div>
         </Modal.Body>
       </Modal>
+      <ToastContainer/>
     </>
   );
 };
