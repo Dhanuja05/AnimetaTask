@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import styles from "./styles.module.scss";
 import NormalButton from "../Common/NormalButton";
 import NormalTable from "../Common/NormalTable";
@@ -32,7 +32,7 @@ const Tasks = () => {
     dispatch(addTask({ text: newTaskText, completed: false }));
     setNewTaskText();
     setShow(false);
-    showToastSuccess("Added Task successfully")
+    showToastSuccess("Added Task successfully");
   };
 
   const handleToggleTask = (taskId) => {
@@ -146,7 +146,7 @@ const Tasks = () => {
           </div>
         </Modal.Body>
       </Modal>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };

@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 export const showToastSuccess = (message) => {
   toast(<p style={{ fontSize: 16 }}>{message}</p>, {
-    position: "top-center",
+    position: "top-right",
     autoClose: 4000,
     hideProgressBar: false,
     newestOnTop: false,
@@ -18,7 +18,7 @@ export const showToastSuccess = (message) => {
 
 export const showToastError = (message) => {
   toast(<p style={{ fontSize: 16 }}>{message}</p>, {
-    position: "top-center",
+    position: "top-right",
     autoClose: 4000,
     hideProgressBar: false,
     newestOnTop: false,
